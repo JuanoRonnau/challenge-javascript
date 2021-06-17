@@ -9,7 +9,7 @@
 // necesario que los vuelvan a definir.
 
 const {
-    Queue,
+    Queue, 
     LinkedList,
     Node,
     BinarySearchTree
@@ -33,7 +33,9 @@ const {
 // < 16
 
 function exponencial(exp) {
-
+    return function hija(par){
+        return par ** exp;
+    }
 }
 
 // ----- Recursión -----
@@ -70,7 +72,7 @@ function exponencial(exp) {
 // Aclaraciones: el segundo parametro que recibe la funcion ('direccion') puede ser pasado vacio (null)
 
 function direcciones(laberinto) {
-
+    
 }
 
 
@@ -88,7 +90,17 @@ function direcciones(laberinto) {
 // deepEqualArrays([0,1,[[0,1,2],1,2]], [0,1,[[0,1,2],1,2]]) => true
 
 function deepEqualArrays(arr1, arr2) {
-
+    var size1= arr1.length;
+    var size2 = arr2.length;
+        for(var i = 0; i < size1; i++){
+            for(var j = 0; j < size2; j++){
+                if(arr1[i] === arr2[j]){
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
 }
 
 
@@ -139,8 +151,12 @@ OrderedLinkedList.prototype.print = function(){
 // < 'head --> 5 --> 3 --> 1 --> null'
 //               4
 OrderedLinkedList.prototype.add = function(val){
-    
-}
+    var newNodo = new Node(val)
+  if(this.head === null){                // (!this.head)
+    this.head = newNodo ;
+  } 
+    var current = this.head;
+ }
 
 
 // EJERCICIO 5
@@ -159,7 +175,8 @@ OrderedLinkedList.prototype.add = function(val){
 // < null
 
 OrderedLinkedList.prototype.removeHigher = function(){
-    
+    if(this.head === null) {
+        return null}
 }
 
 
@@ -179,7 +196,9 @@ OrderedLinkedList.prototype.removeHigher = function(){
 // < null
 
 OrderedLinkedList.prototype.removeLower = function(){
-    
+    if(this.head === null){
+        return null;
+    }
 }
 
 
@@ -230,8 +249,9 @@ function multiCallbacks(cbs1, cbs2){
 // 5   9
 // resultado:[5,8,9,32,64]
 
-BinarySearchTree.prototype.toArray = function() {
-    
+BinarySearchTree.prototype.toArray = function(arbol) {
+    var array = [];
+       return array
 }
 
 
@@ -250,7 +270,9 @@ BinarySearchTree.prototype.toArray = function() {
 // informarse sobre algoritmos, leerlos de un pseudocodigo e implemnterlos alcanzara
 
 function primalityTest(n) {
-    
+    for(let i = 2, s = Math.sqrt(n); i <= s; i++)
+    if(n % i === 0) return false; 
+    return n > 1;
 }
 
 
@@ -260,7 +282,26 @@ function primalityTest(n) {
 // https://en.wikipedia.org/wiki/Quicksort
 
 function quickSort(array) {
-    
+    var len = array.length;
+
+  if(len <= 1) {
+  	return array;
+  }
+
+  var pivot = array[0];
+
+  var left = [];
+  var right = [];
+
+  for(var i = 1; i < len; i++) {
+  	if(array[i] > pivot) {
+  		left.push(array[i]);
+  	} else {
+  		right.push(array[i]);
+  	}
+  }
+
+  return quickSort(left).concat(pivot, quickSort(right));
 }
 // QuickSort ya lo conocen solo que este 
 // ordena de mayor a menor
